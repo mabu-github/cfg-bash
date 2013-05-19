@@ -1,6 +1,9 @@
 # bash-cfg: The default bash configuration
 
-Features:
+This is a homeshick configuration repository. See
+https://github.com/andsens/homeshick
+
+Configuration consists in
 
 + Basic configuration based on Xubuntu defaults
 
