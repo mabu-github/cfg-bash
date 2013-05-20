@@ -1,4 +1,4 @@
-# bash-cfg: The default bash configuration
+# cfg-bash: The default bash configuration
 
 This is a homeshick configuration repository. See
 https://github.com/andsens/homeshick

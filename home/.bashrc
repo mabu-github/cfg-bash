@@ -48,6 +48,6 @@ fi
 
 # Alias definitions directory. Source all the files there
 if [ -d ~/.bash/aliases ]; then
-    . ~/.bash/aliases/*
+    for F in ~/.bash/aliases/*; do source $F; done
 fi
 
