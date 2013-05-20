@@ -1,3 +1,10 @@
+#BASH DISPLAY CONFIGURATION, involves bash colors and prompt
+
+#Choose wether to have a colored prompt, ls and grep
+#USECOLOR=no
+USECOLOR=yes
+
+
 # Inspired by https://gist.github.com/SeanPONeil/3717199
 # List from: https://github.com/altercation/vim-colors-solarized/blob/master/colors/solarized.vim
 # --------- ------- ---- -------  ----------- ---------- ----------- -----------
@@ -25,12 +32,12 @@
 #usage
 function define_colornames {
 USECOLOR=$1
-COLORS=$(tput colors 2>/dev/null)
 if [[ $USECOLOR != yes ]]
 then
     #do nothing, colors and bold codes will be ignored
     true
 else
+    COLORS=$(tput colors 2>/dev/null)
     if [[ $COLORS -ge 256 ]]
     then
         BASE03=$(tput setaf 234)
@@ -97,9 +104,6 @@ then
     export TERM="xterm-256color"
 fi
 
-#enable color
-#USECOLOR=no
-USECOLOR=yes
 define_colornames $USECOLOR
 
 #COLORS STUFF
@@ -119,9 +123,9 @@ then
 fi
 
 #PROMPT STUFF
-
-#simple prompt with solarized colors
-PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]:\[$BOLD$BLUE\]\w\[$RESET\]\$ "
+#simple debian style prompt with solarized colors
+PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo "\[$YELLOW\]\$"; else echo "\[$RED\]#"; fi)'
+PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]:\[$BOLD$BLUE\]\w$PROMPTEND\[$RESET\] "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
