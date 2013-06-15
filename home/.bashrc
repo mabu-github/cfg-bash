@@ -47,7 +47,7 @@ if [ -f ~/.bash/display ]; then
 fi
 
 # Alias definitions directory. Source all the files there
-if [ -d ~/.bash/aliases ]; then
-    for F in ~/.bash/aliases/*; do source $F; done
+if [ -d ~/.bash/sourced ]; then
+    for F in ~/.bash/sourced/*; do . $F; done
 fi
 

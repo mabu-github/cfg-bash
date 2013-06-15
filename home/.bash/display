@@ -136,4 +136,4 @@ xterm*|rxvt*)
     ;;
 esac
 
-unset color
+unset USECOLOR
