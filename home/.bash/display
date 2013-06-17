@@ -31,7 +31,6 @@ USECOLOR=yes
 #NOTE: The solarized colors are defined here but not unset for possible further
 #usage
 function define_colornames {
-USECOLOR=$1
 if [[ $USECOLOR != yes ]]
 then
     #do nothing, colors and bold codes will be ignored
@@ -104,10 +103,10 @@ then
     export TERM="xterm-256color"
 fi
 
-define_colornames $USECOLOR
+define_colornames
 
 #COLORS STUFF
-if [[ "$USECOLOR" == yes ]]
+if [[ $USECOLOR == yes ]]
 then
     #enable color support of ls and grep
     alias ls='ls --color=auto'
@@ -126,6 +125,7 @@ fi
 #simple debian style prompt with solarized colors
 PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo "\[$YELLOW\]\$"; else echo "\[$RED\]#"; fi)'
 PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]:\[$BOLD$BLUE\]\w$PROMPTEND\[$RESET\] "
+unset PROMPTEND
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
