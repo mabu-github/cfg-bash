@@ -13,9 +13,11 @@ Configuration consists in
 
     - .bash\_logout: standard logout
 
-    - .bash/.bash\_display: colors, prompt and display aliases
+    - .dircolors: solarized colors for ls
 
-    - .bash/.bash\_aliases: functional aliases
+    - .bash/display: colors, prompt and display aliases
+
+    - .sourced/00-global: general aliases
 
 
 + Enables 256 color support (for xfce-terminal currently)
