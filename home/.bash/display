@@ -124,7 +124,7 @@ fi
 #PROMPT STUFF
 #simple debian style prompt with solarized colors
 PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo "\[$YELLOW\]\$"; else echo "\[$RED\]#"; fi)'
-PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]:\[$BOLD$BLUE\]\w$PROMPTEND\[$RESET\] "
+PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]: \[$BOLD$BLUE\]\w$PROMPTEND\[$RESET\] "
 unset PROMPTEND
 
 # If this is an xterm set the title to user@host:dir
