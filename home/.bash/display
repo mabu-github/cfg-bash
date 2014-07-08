@@ -116,6 +116,15 @@ then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 
+    # Less Colors
+    export LESS_TERMCAP_mb=$BOLD$RED        # begin blinking
+    export LESS_TERMCAP_md=$BOLD$BLUE       # begin bold
+    export LESS_TERMCAP_me=$RESET           # end mode
+    export LESS_TERMCAP_se=$RESET           # end standout-mode
+    export LESS_TERMCAP_so=$YELLOW          # begin standout-mode - info box
+    export LESS_TERMCAP_ue=$RESET           # end underline
+    export LESS_TERMCAP_us=$BOLD$GREEN      # begin underline
+
     # set the LS_COLORS, the defaults are ok if not running in >= 16 colors
     if [[ -x /usr/bin/dircolors && $(tput colors) -ge 16 ]]
     then
@@ -125,8 +134,8 @@ fi
 
 #PROMPT STUFF
 #simple debian style prompt with solarized colors
-PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo " \[$YELLOW\]\$"; else echo " \[$RED\]#"; fi)'
-PS1="\[$RESET\]\[$BOLD$CYAN\]\u@\h\[$RESET\]: \[$BOLD$BLUE\]\w$PROMPTEND\[$RESET\] "
+PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo " \[$ORANGE\]\$"; else echo " \[$RED\]#"; fi)'
+PS1="\[$RESET\]\[$CYAN\]\u@\h\[$RESET\]: \[$BLUE\]\w$PROMPTEND\[$RESET\] "
 unset PROMPTEND
 
 # If this is an xterm set the title to user@host:dir
