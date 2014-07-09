@@ -45,6 +45,9 @@ fi
 if [ -f ~/.bash/display ]; then
     . ~/.bash/display
 fi
+if [ -f ~/.bash/prompt ]; then
+    . ~/.bash/prompt
+fi
 
 # Alias definitions directory. Source all the files there
 if [ -d ~/.sourced ]; then

@@ -1,9 +1,5 @@
-#BASH DISPLAY CONFIGURATION, involves bash colors and prompt
-
-#Choose wether to have a colored prompt, ls and grep
-#USECOLOR=no
-USECOLOR=yes
-
+# DISPLAY CONFIGURATION, involves colors & terminal configuration
+# for bash compatible shells
 
 # Inspired by https://gist.github.com/SeanPONeil/3717199
 # List from: https://github.com/altercation/vim-colors-solarized/blob/master/colors/solarized.vim
@@ -28,123 +24,106 @@ USECOLOR=yes
 # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 # --------- ------- ---- -------  ----------- ---------- ----------- -----------
 
-#NOTE: The solarized colors are defined here but not unset for possible further
-#usage
+# NOTE: The solarized colors are defined here but not unset for possible
+# further usage
 function define_colornames {
-if [[ $USECOLOR != yes ]]
+COLORS=$(tput colors 2>/dev/null)
+if [[ $COLORS -ge 256 ]]
 then
-    #do nothing, colors and bold codes will be ignored
-    true
+    BASE03=$(tput setaf 234)
+    BASE02=$(tput setaf 235)
+    BASE01=$(tput setaf 240)
+    BASE00=$(tput setaf 241)
+    BASE0=$(tput setaf 244)
+    BASE1=$(tput setaf 245)
+    BASE2=$(tput setaf 254)
+    BASE3=$(tput setaf 230)
+    YELLOW=$(tput setaf 136)
+    ORANGE=$(tput setaf 166)
+    RED=$(tput setaf 160)
+    MAGENTA=$(tput setaf 125)
+    VIOLET=$(tput setaf 61)
+    BLUE=$(tput setaf 33)
+    CYAN=$(tput setaf 37)
+    GREEN=$(tput setaf 64)
+elif [[ $COLORS -eq 16 ]]
+then
+    BASE03=$(tput setaf 8)
+    BASE02=$(tput setaf 0)
+    BASE01=$(tput setaf 10)
+    BASE00=$(tput setaf 11)
+    BASE0=$(tput setaf 12)
+    BASE1=$(tput setaf 14)
+    BASE2=$(tput setaf 7)
+    BASE3=$(tput setaf 15)
+    YELLOW=$(tput setaf 3)
+    ORANGE=$(tput setaf 9)
+    RED=$(tput setaf 1)
+    MAGENTA=$(tput setaf 5)
+    VIOLET=$(tput setaf 13)
+    BLUE=$(tput setaf 4)
+    CYAN=$(tput setaf 6)
+    GREEN=$(tput setaf 2)
 else
-    COLORS=$(tput colors 2>/dev/null)
-    if [[ $COLORS -ge 256 ]]
-    then
-        BASE03=$(tput setaf 234)
-        BASE02=$(tput setaf 235)
-        BASE01=$(tput setaf 240)
-        BASE00=$(tput setaf 241)
-        BASE0=$(tput setaf 244)
-        BASE1=$(tput setaf 245)
-        BASE2=$(tput setaf 254)
-        BASE3=$(tput setaf 230)
-        YELLOW=$(tput setaf 136)
-        ORANGE=$(tput setaf 166)
-        RED=$(tput setaf 160)
-        MAGENTA=$(tput setaf 125)
-        VIOLET=$(tput setaf 61)
-        BLUE=$(tput setaf 33)
-        CYAN=$(tput setaf 37)
-        GREEN=$(tput setaf 64)
-    elif [[ $COLORS -eq 16 ]]
-    then
-        BASE03=$(tput setaf 8)
-        BASE02=$(tput setaf 0)
-        BASE01=$(tput setaf 10)
-        BASE00=$(tput setaf 11)
-        BASE0=$(tput setaf 12)
-        BASE1=$(tput setaf 14)
-        BASE2=$(tput setaf 7)
-        BASE3=$(tput setaf 15)
-        YELLOW=$(tput setaf 3)
-        ORANGE=$(tput setaf 9)
-        RED=$(tput setaf 1)
-        MAGENTA=$(tput setaf 5)
-        VIOLET=$(tput setaf 13)
-        BLUE=$(tput setaf 4)
-        CYAN=$(tput setaf 6)
-        GREEN=$(tput setaf 2)
-    else
-        BASE03=$(tput setaf 4)
-        BASE02=$(tput setaf 4)
-        BASE01=$(tput setaf 7)
-        BASE00=$(tput setaf 7)
-        BASE0=$(tput setaf 6)
-        BASE1=$(tput setaf 4)
-        BASE2=$(tput setaf 7)
-        BASE3=$(tput setaf 7)
-        YELLOW=$(tput setaf 3)
-        ORANGE=$(tput setaf 3)
-        RED=$(tput setaf 1)
-        MAGENTA=$(tput setaf 5)
-        VIOLET=$(tput setaf 5)
-        BLUE=$(tput setaf 4)
-        CYAN=$(tput setaf 6)
-        GREEN=$(tput setaf 2)
-    fi
-    BOLD=$(tput bold)
-    RESET=$(tput sgr0)
+    BASE03=$(tput setaf 4)
+    BASE02=$(tput setaf 4)
+    BASE01=$(tput setaf 7)
+    BASE00=$(tput setaf 7)
+    BASE0=$(tput setaf 6)
+    BASE1=$(tput setaf 4)
+    BASE2=$(tput setaf 7)
+    BASE3=$(tput setaf 7)
+    YELLOW=$(tput setaf 3)
+    ORANGE=$(tput setaf 3)
+    RED=$(tput setaf 1)
+    MAGENTA=$(tput setaf 5)
+    VIOLET=$(tput setaf 5)
+    BLUE=$(tput setaf 4)
+    CYAN=$(tput setaf 6)
+    GREEN=$(tput setaf 2)
 fi
+RESET=$(tput sgr0)
+UNDERLINE=$(tput smul)
+ENDUNDERLINE=$(tput rmul)
+BOLD=$(tput bold)
+ENDBOLD=$RESET #no end bold
+STANDOUT=$(tput smso)
+ENDSTANDOUT=$(tput rmso)
 }
 
-#WE ARE IN THE FUCKING 21ST CENTURY!
-#use 256 colors instead of 8 when using xfce4-terminal
+# WE ARE IN THE FUCKING 21ST CENTURY!
+# use 256 colors instead of 8 when using xfce4-terminal
 if [[ $COLORTERM == "xfce4-terminal" ]]
 then
     export TERM="xterm-256color"
-    #correct solarized palete from 256 colors while leaving the 16 standard colors untouched
+    # correct solarized palete from 256 colors
+    # while leaving the 16 standard colors untouched
     printf '\x1B]4;234;rgb:00/2b/36;235;rgb:07/36/42;240;rgb:58/6e/75;241;rgb:65/7b/83;244;rgb:83/94/96;245;rgb:93/a1/a1;254;rgb:ee/e8/d5;230;rgb:fd/f6/e3;136;rgb:b5/89/00;166;rgb:cb/4b/16;160;rgb:dc/32/2f;125;rgb:d3/36/82;61;rgb:6c/71/c4;33;rgb:26/8b/d2;37;rgb:2a/a1/98;64;rgb:85/99/00\a'
 fi
 
 define_colornames
 
-#COLORS STUFF
-if [[ $USECOLOR == yes ]]
+# enable color support of ls
+alias ls='ls --color=auto'
+
+# enable color for grep and grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+#orange background matched text, magenta file names, yellow bold line numbers and byte offsets, cyan separators, and default terminal colors otherwise
+export GREP_COLORS="ms=07;33:mc=07;33:sl=:cx=:fn=35:ln=01;33:bn=01;33:se=36"
+
+# Less Colors
+export LESS_TERMCAP_mb=$BOLD$RED                    # begin blinking
+export LESS_TERMCAP_md=$BOLD$BLUE                   # begin bold
+export LESS_TERMCAP_me=$RESET                       # end mode
+export LESS_TERMCAP_se=$RESET                       # end standout-mode
+export LESS_TERMCAP_so=$STANDOUT$ORANGE             # begin standout-mode - info box
+export LESS_TERMCAP_ue=$RESET                       # end underline
+export LESS_TERMCAP_us=$UNDERLINE$GREEN             # begin underline
+
+# set the LS_COLORS, the defaults are ok if not running in >= 16 colors
+if [[ -x /usr/bin/dircolors && $(tput colors) -ge 16 ]]
 then
-    #enable color support of ls and grep
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-
-    # Less Colors
-    export LESS_TERMCAP_mb=$BOLD$RED        # begin blinking
-    export LESS_TERMCAP_md=$BOLD$BLUE       # begin bold
-    export LESS_TERMCAP_me=$RESET           # end mode
-    export LESS_TERMCAP_se=$RESET           # end standout-mode
-    export LESS_TERMCAP_so=$YELLOW          # begin standout-mode - info box
-    export LESS_TERMCAP_ue=$RESET           # end underline
-    export LESS_TERMCAP_us=$BOLD$GREEN      # begin underline
-
-    # set the LS_COLORS, the defaults are ok if not running in >= 16 colors
-    if [[ -x /usr/bin/dircolors && $(tput colors) -ge 16 ]]
-    then
-        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    fi
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
-
-#PROMPT STUFF
-#simple debian style prompt with solarized colors
-PROMPTEND='$(if [[ $EUID -ne 0 ]]; then echo " \[$ORANGE\]\$"; else echo " \[$RED\]#"; fi)'
-PS1="\[$RESET\]\[$CYAN\]\u@\h\[$RESET\]: \[$BLUE\]\w$PROMPTEND\[$RESET\] "
-unset PROMPTEND
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-unset USECOLOR
