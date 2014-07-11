@@ -166,7 +166,7 @@ export LESS_TERMCAP_mb=$BOLD$RED                    # begin blinking
 export LESS_TERMCAP_md=$BOLD$BLUE                   # begin bold
 export LESS_TERMCAP_me=$RESET                       # end mode
 export LESS_TERMCAP_se=$RESET                       # end standout-mode
-export LESS_TERMCAP_so=$STANDOUT$ORANGE             # begin standout-mode - info box
+export LESS_TERMCAP_so=$STANDOUT$YELLOW             # begin standout-mode - info box
 export LESS_TERMCAP_ue=$RESET                       # end underline
 export LESS_TERMCAP_us=$UNDERLINE$GREEN             # begin underline
 
