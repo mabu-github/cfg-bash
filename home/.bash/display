@@ -158,6 +158,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias watch='watch --color'
 #orange background matched text, magenta file names, yellow bold line numbers and byte offsets, cyan separators, and default terminal colors otherwise
 export GREP_COLORS="ms=07;33:mc=07;33:sl=:cx=:fn=35:ln=01;33:bn=01;33:se=36"
 
