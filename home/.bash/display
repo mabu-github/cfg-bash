@@ -176,3 +176,18 @@ if [[ -x /usr/bin/dircolors && $(tput colors) -ge 16 ]]
 then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
+
+# Powerline symbols
+# use them
+POWERLINED=1
+if [ $POWERLINED -eq 1 ]; then
+    LEFT_SEP=''
+    LEFT_SEP_ALT=''
+    RIGHT_SEP=''
+    RIGHT_SEP_ALT=''
+fi
+
+# other symbols
+CHECKMARK='✔'
+CROSS='✘'
+
