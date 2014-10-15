@@ -15,6 +15,6 @@ then
     mkdir -p ~/.config/fontconfig/conf.d/
     wget -nv -O ~/.config/fontconfig/conf.d/10-powerline-symbols.conf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
 
-    echo "vim airline: If you don't see the arrow symbols, please close all instances of your terminal emulator or gvim. You may also have to restart X for the changes to take effect."
+    echo "If you don't see the arrow symbols, please close all instances of your terminal emulator. You may also have to restart X for the changes to take effect."
     # If you still don't see the arrow symbols, please submit an issue on GitHub."
 fi
