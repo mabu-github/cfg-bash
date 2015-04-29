@@ -141,7 +141,8 @@ ENDSTANDOUT=$(tput rmso)
 
 # WE ARE IN THE FUCKING 21ST CENTURY!
 # use 256 colors instead of 8 when using xfce4-terminal
-if [[ ($COLORTERM == "xfce4-terminal") || ($COLORTERM == "gnome-terminal") ]]
+CMDLINEAPP=$(basename "$(</proc/$PPID/cmdline)")
+if [[ ($CMDLINEAPP == "xfce4-terminal") || ${CMDLINEAPP:0:14} == gnome-terminal ]]
 then
     export TERM="xterm-256color"
     # correct solarized palete from 256 colors
