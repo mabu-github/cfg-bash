@@ -1,6 +1,20 @@
 # DISPLAY CONFIGURATION, involves colors & terminal configuration
 # for bash compatible shells
-
+##############################################################################
+# CONFIGURATION OPTIONS
+# note that they affect other tools also
+##############################################################################
+# Use powerline symbols
+if [[ -z $POWERLINED ]]
+then
+    export POWERLINED=1
+fi
+# Theme, dark or light solarized
+if [[ -z $THEME ]]
+then
+    export THEME="dark"
+fi
+##############################################################################
 # Inspired by https://gist.github.com/SeanPONeil/3717199
 # List from: https://github.com/altercation/vim-colors-solarized/blob/master/colors/solarized.vim
 # --------- ------- ---- -------  ----------- ---------- ----------- -----------
@@ -137,6 +151,31 @@ BOLD=$(tput bold)
 ENDBOLD=$RESET #no end bold
 STANDOUT=$(tput smso)
 ENDSTANDOUT=$(tput rmso)
+# define inversion colors
+if [[ ($THEME == "light") ]]
+then
+    EMPHASIS=$BASE01
+    PRIMARY=$BASE00
+    SECONDARY=$BASE1
+    BACKHL=$BASE2
+    BACK=$BASE3
+    EMPHASISBG=$BASE01BG
+    PRIMARYBG=$BASE00BG
+    SECONDARYBG=$BASE1BG
+    BACKHLBG=$BASE2BG
+    BACKBG=$BASE3BG
+else
+    EMPHASIS=$BASE1
+    PRIMARY=$BASE0
+    SECONDARY=$BASE01
+    BACKHL=$BASE02
+    BACK=$BASE03
+    EMPHASISBG=$BASE1BG
+    PRIMARYBG=$BASE0BG
+    SECONDARYBG=$BASE01BG
+    BACKHLBG=$BASE02BG
+    BACKBG=$BASE03BG
+fi
 }
 
 # WE ARE IN THE FUCKING 21ST CENTURY!
@@ -178,9 +217,7 @@ then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# Powerline symbols
-# use them
-POWERLINED=1
+# define symbols
 if [ $POWERLINED -eq 1 ]; then
     LEFT_SEP=''
     LEFT_SEP_ALT=''
